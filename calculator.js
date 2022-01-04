@@ -326,28 +326,39 @@ for (var i = 0; i < action_compomnent.length; i++) {
                             case '/':
                                  two_val= calculate_val(result,view,first_val,second_val,index_operator,i);
                                 two_val=two_val.split('-');
-                                
-                                if (result==null) {
-                                    result=parseFloat(two_val[0])/parseFloat(two_val[1]);
-                                    second_val=null;
-                                }else{
-                                    result=result/parseFloat(two_val[1]);
-                                    second_val=null;
-                                }
-                               
-                               
-                            //Show result
-                                if(index_operator.length==v){
-                                    if ( view.split('<br>').length==1) {
-                                        view=view+"<br>"+result;
-                                   }else{
-                                        view=view.split('<br>')[0]+"<br>"+result;
-                                   }
-                                    div_show.innerHTML=view;
+                                if (parseFloat(two_val[1])==0) {
+                                    alert('Division par 0 est impossible');
+                                    div_show.innerHTML='IMPOSSIBLE OPERATION';
                                     first_val=null;
+                                    view=null;
                                     second_val=null;
                                     result=null;
+                                }else{
+                                    if (result==null) {
+                                        result=parseFloat(two_val[0])/parseFloat(two_val[1]);
+                                        second_val=null;
+                                    }else{
+                                        result=result/parseFloat(two_val[1]);
+                                        second_val=null;
+                                    }
+
+                                    //Show result
+                                        if(index_operator.length==v){
+                                            if ( view.split('<br>').length==1) {
+                                                view=view+"<br>"+result;
+                                        }else{
+                                                view=view.split('<br>')[0]+"<br>"+result;
+                                        }
+                                            div_show.innerHTML=view;
+                                            first_val=null;
+                                            second_val=null;
+                                            result=null;
+                                        }
                                 }
+                                
+                               
+                               
+                            
                             break;
                             
                             /*default:
